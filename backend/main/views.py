@@ -19,37 +19,72 @@ class modelInterface(APIView):
 
     def post(self, request):
         
-        encoding = pd.read_csv(os.join(settings.CSV_ROOT, 'encoding.csv'))
-        def encode_agez(x):
-            sample = encoding[encoding['Адгезионная добавка'] == x]['Сode_agez']
-            microsample = sample.values[0]
-            if len(sample) > 1:
-                microsample = sample.values[0]
-            return microsample
+        data = request.data
+        x = []
 
-        def encode_poly(x):
-            sample = encoding[encoding['Полимер'] == x]['Code_poly']
-            microsample = sample.values[0]
-            if len(sample) > 1:
-                microsample = sample.values[0]
-            return microsample
+        x.append(data['adhesion_mass'])
+        x.append(data['bitum_mass'])
+        x.append(data['plasticizer_mass'])
+        x.append(data['polymer_mass'])
+        x.append(data['stapler_mass'])
+        x.append(data['needle_25'])
+        x.append(data['plasticizer_generated'])
+        x.append(data['recept_needle_25'])
 
-        def encode_plastif(x):
-            sample = encoding[encoding['Пластификатор'] == x]['Code_plast']
-            microsample = sample.values[0]
-            if len(sample) > 1:
-                microsample = sample.values[0]
-            return microsample    
-            
-        def set_Encoding(df):
-            df['Адгезионная добавка'] = df['Адгезионная добавка'].apply(encode_agez)
-            df['Пластификатор'] = df['Пластификатор'].apply(encode_plastif)
-            df['Полимер'] = df['Полимер'].apply(encode_poly)
-            return df
+        polymer_count = 4
+        polymer = data['polimer_type']
+        polymer = polymer[len(polymer) - 1:]
 
-        # logger.debug()
-        prediction = MainConfig.some_model.predict(request.PAYLOAD)
-        return prediction
+        plastic_count = 25
+        plastic = data['plasticizer_type']
+        plastic = plastic[len(plastic) - 2:]
+        
+        adhension_count = 5
+        adhension = data['adhesion_type']
+
+        if int(plastic[0]) in range(0,10):
+            print(plastic)
+        else:
+            plastic = plastic[1]
+
+        if adhension == 'Отсутствует':
+            adhension = 5
+        else:
+            adhension = adhension[len(adhension) - 1:]       
+
+        logger.debug(adhension)
+        logger.debug(plastic)
+        logger.debug(polymer)
+
+        polymer_list = [0] * polymer_count
+        polymer_list[int(polymer) - 1] += 1
+        
+        plastic_list = [0] * plastic_count
+        plastic_list[int(plastic) - 1] += 1
+
+        adhension_list = [0] * adhension_count
+        adhension_list[int(adhension) - 1] += 1
+
+        logger.debug(adhension_list)
+        logger.debug(plastic_list)
+        logger.debug(polymer_list)       
+
+        x.extend(polymer_list)
+        x.extend(plastic_list)
+        x.extend(adhension_list)
+
+        x = [float(y) for y in x]
+
+        predictions = []
+        predictions.append(float(MainConfig.gbr_1_column_zero_celsius.predict(np.array([x]))))
+        predictions.append(float(MainConfig.lr_2_column_twenty_five_celsius.predict(np.array([x]))))
+        predictions.append(float(MainConfig.gbr_3_column_laxity.predict(np.array([x]))))
+        predictions.append(float(MainConfig.gbr_4_column_softering.predict(np.array([x]))))
+        predictions.append(float(MainConfig.svr_5_column_elasticity.predict(np.array([x]))))
+
+        return JsonResponse({
+            'prediction':predictions
+        })
 
 class retrainModels(APIView):
 

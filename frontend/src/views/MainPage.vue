@@ -275,7 +275,7 @@ export default {
             },
             adhesion: {
                 adhesion_type: [
-                    'Не требуется', 'Adgesion1', 'Adgesion2','Adgesion3','Adgesion4'
+                    'Отсутствует', 'Adhesion1', 'Adhesion2','Adhesion3','Adhesion4'
                 ],
                 adhesion_mass: 0,
             },
