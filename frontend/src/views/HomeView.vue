@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <div class="container-fluid background shadow-lg mt-5">
         <div class="row">
-          d
+          
         </div>
     </div>
   </div>

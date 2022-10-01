@@ -1,8 +1,8 @@
 <template>
 <footer class="text-center bg-dark-gray text-white py-1">
   <div class="container px-4 pt-6">
-    <div class="flex justify-end mb-6"> 
-      <a href="https://github.com/K-Team-Coders/Neftecode" target="_blank" type="button" class="rounded-lg border-2 border-white text-white leading-normal uppercase hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-1/3 h-14 m-1">
+    <div class="flex justify-center mb-6"> 
+      <a href="https://github.com/K-Team-Coders/Neftecode" target="_blank" type="button" class="rounded-lg border-2 border-white text-white leading-normal uppercase hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-1/6 h-14 mr-2">
         <svg aria-hidden="true"
         focusable="false"
         data-prefix="fab"
