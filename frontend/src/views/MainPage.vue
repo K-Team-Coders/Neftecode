@@ -219,19 +219,19 @@
                 class="border-b bg-gray-800 border-gray-700"
               >
                 <td class="py-6 px-6 border text-center text-5xl">
-                  12
+                  {{mm_penetration_depth0}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  2000
+                  {{mm_penetration_depth25}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  32
+                  {{cm_extensibility}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  2999
+                  {{t_softening}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  22
+                  {{t_elasticity}}
                 </td>
               </tr>
             </tbody>
@@ -260,6 +260,13 @@ export default {
             selected_polimer_type: '',
             selected_adhesion_type: '',
             selected_plastificator_type:'',
+
+            mm_penetration_depth0: 0,
+            mm_penetration_depth25: 0,
+            cm_extensibility: 0,
+            t_softening:0,
+            t_elasticity: 0,
+
             polimer: {
                 polimer_type: [
                     'Polymer1', 'Polymer2', 'Polymer3', 'Polymer4'
@@ -289,9 +296,16 @@ export default {
             'polymer_mass': this.polimer.polimer_mass, 'stapler_mass': this.stapler, 'needle_25': this.needle_25, 
             'adhesion_type': this.selected_adhesion_type, 'plasticizer_type': this.selected_plastificator_type, 'polimer_type': this.selected_polimer_type,
              'plasticizer_generated': this.plasticizer_generated, 'recept_needle_25': this.recept_needle_25}
-            axios.post('http://127.0.0.1:8000/main/predict/',dataforloading )
+            axios.post('http://127.0.0.1:8000/main/predict/',dataforloading)
+            // .then (response => {
+            //     this.mm_penetration_depth0
+            //     this.mm_penetration_depth25
+            //     this.cm_extensibility
+            //     this.t_softening
+            //     this.t_elasticity
+            }
         }
-}}
+}
 
 </script>
 
