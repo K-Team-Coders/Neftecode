@@ -15,12 +15,14 @@
     "d3": "^7.6.1",
     "d3-axis": "^3.0.0",
     "echarts": "^5.4.0",
-    "v-charts": "^1.17.10",
+    "v-charts": "^1.19.0",
     "v-network-graph": "^0.6.9",
     "vue": "^3.2.13",
     "vue-chartjs": "^4.1.1",
+    "vue-echarts": "^6.2.3",
     "vue-router": "^4.0.3",
     "vue-sidebar-menu-akahon": "^0.1.4",
+    "vue3-apexcharts": "^1.4.1",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

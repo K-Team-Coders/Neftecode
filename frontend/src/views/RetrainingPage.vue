@@ -21,6 +21,11 @@
                             Загрузить
                         </button>
                     </form>
+                    <div>
+                        <Heatmap></Heatmap>
+                    </div>
+                    
+                        
                 </div>
             </section>
             <Footer></Footer>
@@ -29,59 +34,35 @@
 </template>
 
 <script>
+
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Carousel from '../components/Carousel.vue'
+import Heatmap from "../components/charts/Heatmap.vue";
+
+
 export default {
-    components: { Header, Footer, Carousel },
-    data() {
-        return {
-            bitum: 0,
-            stapler: 0,
-            needle_25: 0,
-            plastificator_generated: 0,
-            recept_needle_25: 0,
-            selected_polimer_type: '',
-            selected_adhesion_type: '',
-            selected_plastificator_type: '',
-            polimer: {
-                polimer_type: [
-                    'Polimer1', 'Polimer2', 'Polimer3', 'Polimer4'
-                ],
-                polimer_mass: 0
+    components: { Heatmap, Header, Footer, Carousel },
+            methods: {
+            submitFile() {
+                let formData = new FormData();
+                formData.append('file', this.file);
+                axios.post('http://127.0.0.1:8000/main/load_file_tables/',
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
             },
-            adhesion: {
-                adhesion_type: [
-                    'Не требуется', 'Adgesion1', 'Adgesion2', 'Adgesion3', 'Adgesion4'
-                ],
-                adhesion_mass: 0,
-            },
-            plastificator: {
-                plastificator_type: [
-                    'Plastificator1', 'Plastificator2', 'Plastificator1', 'Plastificator1'
-                ],
-                plastificator_mass: 0
+
+            handleFileUpload() {
+                this.file = this.$refs.file.files[0]
             }
         }
-    },
-    methods: {
-        submitFile() {
-            let formData = new FormData();
-            formData.append('file', this.file);
-            axios.post('http://127.0.0.1:8000/main/load_file_tables/',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-            )},
-
-        handleFileUpload() {
-            this.file = this.$refs.file.files[0]
-        }
-    }
 }
+
 </script>
 
 <style>

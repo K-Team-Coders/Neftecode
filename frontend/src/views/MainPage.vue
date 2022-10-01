@@ -148,7 +148,7 @@
             <label
               for="small-input"
               class="flex justify-center font-bold text-2xl text-white mb-2"
-              >Базовая генерация для расчета пластификатора:
+              >Базовая пенетрация для расчета пластификатора:
               {{ plastificator_generated }}
             </label>
             <input
