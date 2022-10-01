@@ -24,11 +24,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-<<<<<<< Updated upstream
-              href="#/retraining/" data-mdb-ripple="true" data-mdb-ripple-color="light">Дообучение</a>
-=======
               href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Переобучение модели</a>
->>>>>>> Stashed changes
           </li>
         </ul>
       </div>
