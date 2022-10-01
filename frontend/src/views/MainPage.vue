@@ -182,7 +182,7 @@
           </div>
         </div>
         <div class="flex justify-center mt-4 ">
-          <button
+          <button @click="loadData()"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-16 text-2xl rounded"
           >
             Рассчитать ФМС
@@ -295,16 +295,19 @@ export default {
             let dataforloading = {'adhesion_mass': this.adhesion.adhesion_mass, 'bitum_mass': this.bitum, 'plasticizer_mass': this.plastificator.plastificator_mass, 
             'polymer_mass': this.polimer.polimer_mass, 'stapler_mass': this.stapler, 'needle_25': this.needle_25, 
             'adhesion_type': this.selected_adhesion_type, 'plasticizer_type': this.selected_plastificator_type, 'polimer_type': this.selected_polimer_type,
-             'plasticizer_generated': this.plasticizer_generated, 'recept_needle_25': this.recept_needle_25}
+             'plasticizer_generated': this.plastificator_generated, 'recept_needle_25': this.recept_needle_25}
             axios.post('http://127.0.0.1:8000/main/predict/',dataforloading)
-            // .then (response => {
-            //     this.mm_penetration_depth0
-            //     this.mm_penetration_depth25
-            //     this.cm_extensibility
-            //     this.t_softening
-            //     this.t_elasticity
-            }
+            .then (response => {
+            console.log(response.data),
+            this.mm_penetration_depth0 = response.data.prediction[0]
+            this.mm_penetration_depth25 =response.data.prediction[1],
+            this.cm_extensibility = response.data.prediction[2],
+            this.t_softening = response.data.prediction[3],
+            this.t_elasticity= response.data.prediction[4]
+        })
+            
         }
+}
 }
 
 </script>
