@@ -86,6 +86,22 @@ class modelInterface(APIView):
             'prediction':predictions
         })
 
+class correlationMatrix(APIView):
+
+    def get(self, request):
+
+        train = pd.read_csv(os.path.join(settings.CSV_ROOT, 'x_train.csv'))
+        test = pd.read_csv(os.path.join(settings.CSV_ROOT, 'y_train.csv'))
+        total_df = pd.DataFrame.merge(train, test, how='inner')
+        correlation_matrix = total_df.corr()
+        logger.debug(correlation_matrix)
+        logger.debug(correlation_matrix.values)
+        logger.debug(correlation_matrix.columns)
+
+        return JsonResponse({
+            "jj":'jkjk'
+        })
+
 class retrainModels(APIView):
 
     def post(self, request):
