@@ -219,19 +219,19 @@
                 class="border-b bg-gray-800 border-gray-700"
               >
                 <td class="py-6 px-6 border text-center text-5xl">
-                  {{mm_penetration_depth0}}
+                  {{Math.round(mm_penetration_depth0, 2)}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  {{mm_penetration_depth25}}
+                  {{Math.round(mm_penetration_depth25, 2)}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  {{cm_extensibility}}
+                  {{Math.round(cm_extensibility, 2)}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  {{t_softening}}
+                  {{Math.round(t_softening,2 )}}
                 </td>
                 <td class="py-6 px-6 border text-center text-5xl">
-                  {{t_elasticity}}
+                  {{Math.round(t_elasticity,2)}}
                 </td>
               </tr>
             </tbody>
