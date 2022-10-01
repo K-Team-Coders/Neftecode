@@ -7,6 +7,12 @@ const routes = [
     
     component: () => import(/* webpackChunkName: "about" */ '../views/MainPage.vue')
   },
+  {
+    path: '/retraining/',
+    name: 'retraining',
+    
+    component: () => import(/* webpackChunkName: "about" */ '../views/RetrainingPage.vue')
+  }
 ]
 
 const router = createRouter({

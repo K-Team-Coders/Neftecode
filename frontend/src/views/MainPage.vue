@@ -3,90 +3,6 @@
         <section class="bg-dark-gray">
             <Header></Header>
             <Carousel></Carousel>
-            <!-- <div class="text-white border-white grid grid-rows-2 grid-cols-5">
-                <div class="flex justify-center mr-36">
-                    <div class="shadow-2xl mt-3">
-                        <div class="flex justify-center mt-2">
-                            <label for="small-input" class="flex text-lg font-medium text-gray-900 dark:text-gray-300">Битум: {{bitum}}%</label>
-                        </div>
-                        <div class="flex justify-center mt-3">
-                            <input type="number" min="0" max="100" step="0.01" class=" p-2  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="small-input"  v-model="bitum" placeholder="Введите % массы битума" />
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-6 mr-4">
-                    <div>
-                        <label for="small-input" class="block text-center mb-2 text-lg font-medium text-gray-900 dark:text-gray-300">Связывающее вещество: {{ stapler }}%</label>
-                    </div>
-                    <div>
-                        <input type="number" min="0" max="100" step="0.01" class="flex ml-20 p-2 w-1/2  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="small-input" v-model="stapler" placeholder="Введите % массы сшивающей добавки" />
-                    </div>                
-                </div>
-                <div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Выберите тип полимера</label>
-                        <select class="text-black" v-model="selected_polimer_type">
-                            <option class="text-black" v-for="item in polimer.polimer_type" :key="item">{{item}}</option>
-                        </select>
-                        <div>
-                            <p>Полимер:{{ polimer.polimer_mass }} %</p>
-                            <input class="text-black" v-model="polimer.polimer_mass"
-                                placeholder="Введите % массы полимера" />
-                        </div>
-                </div>
-
-                <div>
-                    <div>Выберите тип пластификатора
-                    <select class="text-black" v-model="selected_plastificator_type">
-                        <option disabled value="">Выберите один из вариантов</option>
-                        <option class="text-black" v-for="item in plastificator.plastificator_type" :key="item">{{item}}</option>
-                    </select>
-                    <span>Выбрано: {{selected_plastificator_type}}</span>
-                    <div>
-                        <p>пластификатор:{{plastificator.plastificator_mass }} %</p>
-                        <input class="text-black" v-model="plastificator.plastificator_mass"
-                            placeholder="Введите % массы пластификтора" />
-                    </div>
-                </div>
-                </div>
-
-                <div>
-                    <div>Выберите тип адгезионной добавки
-                    <select class="text-black" v-model="selected_adhesion_type">
-                        <option disabled value="">Выберите один из вариантов</option>
-                        <option class="text-black" v-for="item in adhesion.adhesion_type" :key="item">{{item}}</option>
-                    </select>
-                    <span>Выбрано: {{selected_adhesion_type}}</span>
-                    <div>
-                        <p>Адгезионная добавка:{{ adhesion.adhesion_mass }} %</p>
-                        <input class="text-black" v-model="adhesion.adhesion_mass"
-                            placeholder="Введите % массы адгезионной добавка" />
-                    </div>
-                </div>
-                </div>
-
-                <div>
-                    <div>Исходная игла при наклоне 25°
-                        <p>:{{ needle_25 }} %</p>
-                        <input class="text-black" v-model="needle_25" placeholder="Введите исходную иглу при 25°" />
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <p>Базовой генерация для расчета пластификатора:{{ plastificator_generated }} %</p>
-                        <input class="text-black" v-model="plastificator_generated" placeholder="Введите значение базовой генерации для расчета пластификатора" />
-                    </div>
-                </div>
-
-                <div>
-                    <div>
-                        <p>Расчет рецептуры на глубину проникания иглы при 25°:{{ recept_needle_25 }} %</p>
-                        <input class="text-black" v-model="recept_needle_25" placeholder="Введите значение расчета рецептуры на глубину проникания иглы при 25°" />
-                    </div>
-                </div>
-
-            </div> -->
-
         <div class="px-32">
             <div class="grid grid-cols-6 grid-raws-3 gap-3 mt-4 text-black">
                 <div class="col-start-1 col-end-3 py-2">
@@ -135,7 +51,7 @@
                 </div>
             </div>
             <div class="flex justify-center mt-4 ">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-16 text-2xl rounded">
+                <button @click="loadData()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-16 text-2xl rounded">
                     Рассчитать ФМС
                 </button>
             </div>
@@ -149,6 +65,7 @@
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Carousel from '../components/Carousel.vue'
+import axios from 'axios'
 export default {
     components: { Header, Footer, Carousel },
     data() {
@@ -163,7 +80,7 @@ export default {
             selected_plastificator_type:'',
             polimer: {
                 polimer_type: [
-                    'Polimer1', 'Polimer2', 'Polimer3', 'Polimer4'
+                    'Polymer1', 'Polymer2', 'Polymer3', 'Polymer4'
                 ],
                 polimer_mass: 0
             },
@@ -175,14 +92,23 @@ export default {
             },
             plastificator: {
                 plastificator_type: [
-                    'Plastificator1', 'Plastificator2', 'Plastificator1' ,'Plastificator1'
+                    'Plasticizer1', 'Plasticizer2', 'Plasticizer3' ,'Plasticizer4', 'Plasticizer5', 'Plasticizer6', 'Plasticizer7', 'Plasticizer8', 'Plasticizer9', 'Plasticizer10', 'Plasticizer11',
+                    'Plasticizer12', 'Plasticizer13', 'Plasticizer14', 'Plasticizer15', 'Plasticizer16', 'Plasticizer17', 'Plasticizer18', 'Plasticizer19','Plasticizer20', 'Plasticizer21', 'Plasticizer22', 'Plasticizer23', 'Plasticizer24', 'Plasticizer25'
                 ],
                 plastificator_mass: 0
-            }
+            },
         }
+
+
     },
     methods:{
-
+        loadData() {
+            let dataforloading = {'adhesion_mass': this.adhesion.adhesion_mass, 'bitum_mass': this.bitum, 'plasticizer_mass': this.plastificator.plastificator_mass, 
+            'polymer_mass': this.polimer.polimer_mass, 'stapler_mass': this.stapler, 'needle_25': this.needle_25, 
+            'adhesion_type': this.selected_adhesion_type, 'plasticizer_type': this.selected_plastificator_type, 'polimer_type': this.selected_polimer_type,
+             'plasticizer_generated': this.plasticizer_generated, 'recept_needle_25': this.recept_needle_25}
+            axios.post('http://127.0.0.1:8000/main/predict/',dataforloading )
+        }
 }}
 
 </script>

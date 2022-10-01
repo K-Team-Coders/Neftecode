@@ -20,19 +20,11 @@
         <ul class="navbar-nav mr-auto lg:flex lg:flex-row mt-2">
           <li class="nav-item">
             <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-              href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Home</a>
+              href="#/" data-mdb-ripple="true" data-mdb-ripple-color="light">Главная</a>
           </li>
           <li class="nav-item">
             <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-              href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-              href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">Pricing</a>
-          </li>
-          <li class="nav-item mb-2 lg:mb-0">
-            <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-              href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">About</a>
+              href="#/retraining/" data-mdb-ripple="true" data-mdb-ripple-color="light">Дообучение</a>
           </li>
         </ul>
       </div>
@@ -49,5 +41,42 @@ export default {
 </script>
 
 <style>
+.underline-one {
+    color: #f3f4f6;
+    /* Цвет обычной ссылки */
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    /* Убираем подчеркивание */
+}
 
+.underline-one:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    width: 0;
+    height: 2px;
+    /* Высота линии */
+    background-color: rgb(255, 0, 0);
+    /* Цвет подчеркивания при исчезании линии*/
+    transition: width 0.5s;
+    /* Время эффекта */
+}
+
+.underline-one:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    height: 2px;
+    /* Высота линии */
+    background-color: rgb(0, 38, 255);
+    /* Цвет подчеркивания при появлении линии*/
+    transition: width 0.5s;
+    /* Время эффекта */
+}
 </style>
