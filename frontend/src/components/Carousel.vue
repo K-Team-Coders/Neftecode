@@ -36,7 +36,7 @@
     </div>
     <div class="carousel-item relative float-left w-full">
       <img
-        src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
+        src="https://rivelty.ru/upload/cachedImages/interlaced/4078525f2729f8303e148ba8ab070f41.jpg"
         class="block w-full"
         alt="..."
       />
