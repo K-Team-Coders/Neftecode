@@ -1,35 +1,37 @@
 <template>
-
     <body>
         <section class="bg-dark-gray">
             <Header></Header>
             <Carousel></Carousel>
-            <div class="text-white border-white grid grid-rows-2 grid-cols-5">
-                <div>
-                    <div>
-                        <p>Битум:{{ bitum }} %</p>
-                        <input class="text-black" v-model="bitum" placeholder="Введите % массы битума" />
+            <!-- <div class="text-white border-white grid grid-rows-2 grid-cols-5">
+                <div class="flex justify-center mr-36">
+                    <div class="shadow-2xl mt-3">
+                        <div class="flex justify-center mt-2">
+                            <label for="small-input" class="flex text-lg font-medium text-gray-900 dark:text-gray-300">Битум: {{bitum}}%</label>
+                        </div>
+                        <div class="flex justify-center mt-3">
+                            <input type="number" min="0" max="100" step="0.01" class=" p-2  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="small-input"  v-model="bitum" placeholder="Введите % массы битума" />
+                        </div>
                     </div>
                 </div>
-
-                <div>
+                <div class="mt-6 mr-4">
                     <div>
-                        <p>Связывающее вещество:{{ stapler }} %</p>
-                        <input class="text-black" v-model="stapler" placeholder="Введите % массы сшивающей добавки" />
+                        <label for="small-input" class="block text-center mb-2 text-lg font-medium text-gray-900 dark:text-gray-300">Связывающее вещество: {{ stapler }}%</label>
                     </div>
+                    <div>
+                        <input type="number" min="0" max="100" step="0.01" class="flex ml-20 p-2 w-1/2  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="small-input" v-model="stapler" placeholder="Введите % массы сшивающей добавки" />
+                    </div>                
                 </div>
-
-                <div>Выберите тип полимера
-                    <select class="text-black" v-model="selected_polimer_type">
-                        <option disabled value="">Выберите один из вариантов</option>
-                        <option class="text-black" v-for="item in polimer.polimer_type" :key="item">{{item}}</option>
-                    </select>
-                    <span>Выбрано: {{selected_polimer_type}}</span>
-                    <div>
-                        <p>Полимер:{{ polimer.polimer_mass }} %</p>
-                        <input class="text-black" v-model="polimer.polimer_mass"
-                            placeholder="Введите % массы полимера" />
-                    </div>
+                <div>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Выберите тип полимера</label>
+                        <select class="text-black" v-model="selected_polimer_type">
+                            <option class="text-black" v-for="item in polimer.polimer_type" :key="item">{{item}}</option>
+                        </select>
+                        <div>
+                            <p>Полимер:{{ polimer.polimer_mass }} %</p>
+                            <input class="text-black" v-model="polimer.polimer_mass"
+                                placeholder="Введите % массы полимера" />
+                        </div>
                 </div>
 
                 <div>
@@ -83,10 +85,64 @@
                     </div>
                 </div>
 
+            </div> -->
+
+        <div class="px-32">
+            <div class="grid grid-cols-6 grid-raws-3 gap-3 mt-4 text-black">
+                <div class="col-start-1 col-end-3 py-2">
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Масса полимера: {{ polimer.polimer_mass }}%</label>
+                    <select class="font-bold p-2 w-1/2 mb-2 text-sm text-gray-100 rounded-lg border border-gray-300 bg-gray-700 dark:border-gray-600" v-model="selected_polimer_type">
+                        <option disabled value="">Выберите один из вариантов</option>
+                        <option class="text-white" v-for="item in polimer.polimer_type" :key="item">{{item}}</option>
+                    </select>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input"  v-model="polimer.polimer_mass" placeholder="Введите % массы полимера" />
+                </div>
+                <div class="col-start-3 col-end-5 py-2"> 
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Масса пластификатора: {{plastificator.plastificator_mass }}%</label>
+                    <select class="font-bold p-2 w-1/2 mb-2 text-sm text-gray-100 rounded-lg border border-gray-300 bg-gray-700 dark:border-gray-600" v-model="selected_plastificator_type">
+                        <option disabled value="">Выберите один из вариантов</option>
+                        <option class="text-white" v-for="item in plastificator.plastificator_type" :key="item">{{item}}</option>
+                    </select>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300  focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input" v-model="plastificator.plastificator_mass" placeholder="Введите % массы пластификтора" />
+                </div> 
+                <div class="col-start-5 col-end-7  py-2">
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Масса адгезионной добавки: {{ adhesion.adhesion_mass }}%</label>
+                    <select class="font-bold p-2 w-1/2 mb-2 text-sm text-gray-100 rounded-lg border border-gray-300 bg-gray-700 dark:border-gray-600" v-model="selected_adhesion_type">
+                        <option disabled value="">Выберите один из вариантов</option>
+                        <option class="text-white" v-for="item in adhesion.adhesion_type" :key="item">{{item}}</option>
+                    </select>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input"  v-model="adhesion.adhesion_mass" placeholder="Введите % массы адгезионной добавки" />
+                </div>          
+                <div class="col-start-1 col-end-4 ">
+                    <label class="flex justify-center font-bold text-2xl text-white mb-2">Битум: {{bitum}}%</label>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input"  v-model="bitum" placeholder="Введите % массы битума" />
+                </div>
+                <div class="col-start-4 col-end-7"> 
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Связывающее вещество: {{ stapler }}%</label>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input" v-model="stapler" placeholder="Введите % массы сшивающей добавки" />
+                </div>
+                <div class="col-start-1 col-end-3">
+                    <label for="small-input" class="flex font-bold text-2xl text-white mb-2">Исходная игла<br> при наклоне 25°: {{ needle_25 }}</label>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input" v-model="needle_25" placeholder="Введите исходную иглу при 25°" />
+                </div>
+                <div class="col-start-3 col-end-5"> 
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Базовая генерация для расчета пластификатора: {{ plastificator_generated }} </label>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold p-3 w-full text-2xl text-center mb-2 text-gray-100 rounded-lg border border-gray-300  focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input" v-model="plastificator_generated" placeholder="Введите значение базовой генерации для расчета пластификатора"/>
+                </div>
+                <div class="col-start-5 col-end-7">
+                    <label for="small-input" class="flex justify-center font-bold text-2xl text-white mb-2">Расчет рецептуры на глубину проникания иглы при 25°: {{ recept_needle_25 }}</label>
+                    <input type="number" min="0" max="100" step="0.01" class="font-bold text-2xl text-center p-3 w-full mb-2 text-gray-100 rounded-lg border border-gray-300  focus:ring-blue-500 focus:border-blue-500 bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " id="small-input" v-model="recept_needle_25" placeholder="Введите значение расчета рецептуры на глубину проникания иглы при 25°" />
+                </div>
             </div>
-            <Footer></Footer>
-        </section>
-    </body>
+            <div class="flex justify-center mt-4 ">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-16 text-2xl rounded">
+                    Рассчитать ФМС
+                </button>
+            </div>
+        </div>         
+        <Footer></Footer>
+    </section>
+</body>
 </template>
 
 <script>
