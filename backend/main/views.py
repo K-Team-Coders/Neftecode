@@ -42,7 +42,7 @@ class modelInterface(APIView):
         adhension_count = 5
         adhension = data['adhesion_type']
 
-        if int(plastic[0]) in range(0,10):
+        if plastic[0] != 'r':
             print(plastic)
         else:
             plastic = plastic[1]
