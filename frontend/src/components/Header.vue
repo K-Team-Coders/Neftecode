@@ -17,14 +17,12 @@
         </button>
       </div>
       <div class="navbar-collapse collapse grow items-center" id="navbarSupportedContentY">
+        <img src="../assets/natural-gas.png" alt="north" />
+                      <h3 class="text-base text-white font-bold tracking-normal leading-tight ml-3 hidden lg:block">Онлайн Лаборатория</h3>
         <ul class="navbar-nav mr-auto lg:flex lg:flex-row mt-2">
           <li class="nav-item">
             <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
               href="#/" data-mdb-ripple="true" data-mdb-ripple-color="light">Главная</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link block pr-2 lg:px-2 py-2 text-gray-100 hover:text-gray-400 focus:text-gray-400 transition duration-150 ease-in-out underline-one font-rale"
-              href="#/retraining/" data-mdb-ripple="true" data-mdb-ripple-color="light">Переобучение модели</a>
           </li>
         </ul>
       </div>
